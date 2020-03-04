@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<conio.h>
+int arr[20];
+void selectionSort(int n)
+{
+int imin,i,j,temp;
+for(i=0;i<n;i++)
+{
+    imin=i;
+    for(j=i+1;j<n;j++)
+    {
+       if(arr[imin]>arr[j])
+       {
+       imin=j;
+       }
+    }
+    temp=arr[i];
+    arr[i]=arr[imin];
+    arr[imin]=temp;
+}
+printf("Successfully sorted using selection sort algorithm\n");
+}
+void main()
+{
+int n,i;
+printf("\nEnter the number of elements: ");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+   printf("Enter %dth element: ",i);
+   scanf("%d",&arr[i]);
+}
+selectionSort(n);
+for(i=0;i<n;i++)
+{
+   printf("%d\n",arr[i]);
+}
+}
