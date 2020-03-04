@@ -1,0 +1,208 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int num,sum=0,k,mat1[3][3],mat2[3][3],i,j,mat3[3][3],arr[3][3],arrt[3][3];
+cout<<"Enter a choice ofyours\n 1:Addition of matrix \n 2:Multiplication of Matrix \n 3:Transpose of Matrix \n";
+cin>>num;
+switch(num)
+{
+case 1:
+  cout<<"enter matrix 1 elements:";
+  for(i=0;i<3;i++)
+  {
+	for(j=0;j<3;j++)
+	{
+
+	   cin>>mat1[i][j];
+	}
+  }
+  cout<<"enter matrix 2 elements:";
+  for(i=0;i<3;i++)
+  {
+	for(j=0;j<3;j++)
+	{
+	cin>>mat2[i][j];
+	}
+  }
+  cout<<"adding the two matrix to from the third matrix...\n";
+  for(i=0;i<3;i++)
+  {
+	for(j=0;j<3;j++)
+	{
+	   mat3[i][j]=mat1[i][j]+mat2[i][j];
+	}
+  }
+  cout<<"the two matrix added sucessfully...!!";
+  cout<<"the new matrix will be :\n";
+  for(i=0;i<3;i++)
+  {
+	for(j=0;j<3;j++)
+	{
+	   cout<<mat3[i][j]<<"";
+	   cout<<"\t";
+	}
+	cout<<"\n";
+  }
+  break;
+case 2:
+  cout<<"Enter the first matrix elements[3][3]:";
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+     cin>>mat1[i][j];
+    }
+  }
+  cout<<"Enter the second matrix elements[3][3]:";
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+     {
+      cin>>mat2[i][j];
+     }
+  }
+  cout<<"Multiplying two matrix \n";
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+     {
+      sum=0;
+      for(k=0;k<3;k++)
+       {
+	 sum=sum+mat1[i][j]*mat2[k][j];
+       }
+      mat3[i][j]=sum;
+     }
+   }
+  cout<<"Multiplicatio of two matrix\n";
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+     {
+      cout<<mat3[i][j]<<"";
+      cout<<"\t";
+     }
+    cout<<"\n";
+  }
+break;
+case 3:
+cout<<"Enter 3*3 array elemets:\n";
+for(i=0;i<3;i++)
+{
+for(j=0;j<3;j++)
+{
+cin>>arr[i][j];
+}
+}
+cout<<"Transposing array\n";
+for(i=0;i<3;i++)
+{
+for(j=0;j<3;j++)
+{
+arrt[i][j]=arr[j][i];
+}
+}
+cout<<"Transpose of matrix:\n";
+for(i=0;i<3;i++)
+{
+for(j=0;j<3;j++)
+{
+cout<<arrt[i][j];
+cout<<"\t";
+}
+cout<<"\n";
+}
+break;
+default:
+  cout<<"You have entered  a wrong choice";
+}
+getch();
+}
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+struct node
+{
+	int info;
+	node *next;
+
+}
+*start,*newptr,*save,*ptr;
+node *create_new_node(int);
+void insert_at_beg(node*);
+void display(node*);
+void main()
+{
+ clrscr();
+ start=NULL;
+ int inf;
+ char ch='y';
+ while(ch=='y'|| ch=='Y')
+ {
+	clrscr();
+	cout<<"enter Information for the new node:\n";
+	cin>>inf;
+	cout<<"\n Creating new node..!!.. Press any key to continue..\n";
+	getch();
+	newptr=create_new_node(inf);
+	if(newptr!=NULL)
+	{
+		cout<<"\n\n New node created successfully..!!\n";
+		cout<<"Press any key to contiune";
+		getch();
+
+
+	}
+	else
+	{
+		cout<<"\n Sorry..!!..cannot create new node..!!...Aborting!!";
+		cout<<"\n Press any key to exit..";
+		getch();
+		exit(1);
+
+
+
+	}
+	cout<<"\n\n Now inserting this node at the beginning of the list\n";
+	cout<<"Press any key to continue\n";
+	getch();
+	insert_at_beg(newptr);
+	cout<<"\nNode Successfully Inserted at the beginning of the List\n";
+	cout<<"Now the list is \n";
+	display(start);
+	cout<<"\nWant to enter more nodes?(y/n)";
+	cin>>ch;
+ }
+    getch();
+}
+   node *create_new_node(int n)
+   {
+	ptr=new node;
+	ptr->info=n;
+	ptr->next=NULL;
+	return ptr;
+   }
+   void insert_at_beg(node *np)
+   {
+	if(start==NULL)
+	{
+	start=np;
+	}
+	else
+	{
+		save=start;
+		start=np;
+		np->next=save;
+	}
+   }
+   void display(node *np)
+   {
+	while(np!=NULL)
+	{
+		cout<<np->info<<"->";
+		np=np->next;
+	}
+	cout<<"!!\n";
+   }
